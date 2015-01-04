@@ -13,7 +13,7 @@ for ori in range(90,180,30):
             )
 
 #organise them with the trial handler
-trials = data.TrialHandler(stimList,10)
+trials = data.TrialHandler(stimList,10,extraInfo={"participant":"nobody"})
 trials.data.addDataType('choice')#this will help store things with the stimuli
 trials.data.addDataType('RT')#add as many types as you like
 
@@ -41,6 +41,7 @@ trials.saveAsExcel(fileName='testData', # ...or an xlsx file (which supports she
                   sheetName = 'rawData',
                   stimOut=['sf','ori'], 
                   dataOut=['RT_mean','RT_std', 'choice_raw'])
+df = trials.saveAsWideText(filename='testWideData') #wide format is good for analysis in R or SPSS; also returns dataframe
 trials.saveAsPickle(fileName = 'testData')#this saves a copy of the whole object 
     
 
